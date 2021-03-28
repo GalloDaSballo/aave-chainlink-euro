@@ -6,6 +6,7 @@ import "hardhat-deploy";
 // To make hardhat-waffle compatible with hardhat-deploy
 // we have aliased hardhat-ethers to hardhat-ethers-deploy in package.json
 import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
 import "hardhat-gas-reporter";
 import "@typechain/hardhat";
 import "solidity-coverage";
@@ -40,7 +41,7 @@ const config: HardhatUserConfig = {
         tests: "./test",
     },
     solidity: {
-        version: "0.8.0",
+        version: "0.6.12", // Chain link needs .6 but < .7
         settings: {
             // https://hardhat.org/hardhat-network/#solidity-optimizer-support
             optimizer: {
@@ -57,6 +58,9 @@ const config: HardhatUserConfig = {
         currency: "USD",
         gasPrice: 100,
         excludeContracts: ["Mock", "ERC20"],
+    },
+    etherscan: {
+        apiKey: process.env.ETHERSCAN_API_KEY,
     },
 };
 
