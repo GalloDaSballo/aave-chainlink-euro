@@ -4,10 +4,12 @@
   "name": "pandoracms",
   "workspaces": ["packages/*"],
   "scripts": {
-    "localnode": "yarn workspace @pandoracms/hardhat hardhat node",
     "hardhat": "yarn workspace @pandoracms/hardhat hardhat",
-    "deploy": "yarn workspace @pandoracms/hardhat hardhat deploy",
+    "localnode": "yarn hardhat node",
+    "deploy": "yarn hardhat deploy",
+
     "subgraph": "yarn workspace @pandoracms/subgraph",
+    
     "next": "yarn workspace @pandoracms/next",
     "dev": "yarn next dev",
     "lint": "yarn next lint"
