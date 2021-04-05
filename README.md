@@ -1,81 +1,38 @@
-# Solidity Template
+# PandoraCMS, decentralized, uncensorable CMS for your blog
 
-My favourite setup for writing Solidity smart contracts.
+This is a monorepo for the PandoraCMS website, containing:
 
-- [Hardhat](https://github.com/nomiclabs/hardhat): compile and run the smart contracts on a local development network
-- [hardhat-deploy](https://github.com/wighawag/hardhat-deploy): intelligently manage contract deployments and Etherscan verification
-- [TypeChain](https://github.com/ethereum-ts/TypeChain): generate TypeScript types for smart contracts
-- [Ethers](https://github.com/ethers-io/ethers.js/): renowned Ethereum library and wallet implementation
-- [Waffle](https://github.com/EthWorks/Waffle): tooling for writing comprehensive smart contract tests
-- [Solhint](https://github.com/protofire/solhint): linter
-- [Solcover](https://github.com/sc-forks/solidity-coverage) code coverage
-- [Prettier Plugin Solidity](https://github.com/prettier-solidity/prettier-plugin-solidity): code formatter
+## hardhat
+The contracts, with tests and tasks to publish new content, using Solidity Template
 
-This is a GitHub template, which means you can reuse it as many times as you want. You can do that by clicking the "Use this
-template" button at the top of the page.
+## next
+The UI for the website, to interact with the protocol and publish new content, using NextJS
 
-## Usage
+## subgraph
+The subgraph code to track new posts, using TheGraph
 
-### Pre Requisites
+## Deploy your own blog
 
-Before running any command, make sure to install dependencies:
+Docker image to set up a server to deploy new dencetralized blogs, done to help onboard new authors
 
-```sh
-yarn install
-```
+https://github.com/GalloDaSballo/pandoracms-deploy-docker
 
-### Compile
+## Default Blog Template
+A CRA Application, build it while injecting REACT_APP_AUTHOR_ADDRESS to set up your own blog
+(Or use the deploy repo to deploy it)
 
-Compile the smart contracts with Hardhat:
+https://github.com/GalloDaSballo/pandoracms-default-template
 
-```sh
-yarn compile
-```
 
-### TypeChain
 
-Compile the smart contracts and generate TypeChain artifacts:
+## Local Blog Testing
 
-```sh
-yarn build
-```
+## Run a hardhat localhost node
+yarn localnode
 
-### Lint Solidity
+## Deploy the contract to localhost
+yarn deploy --network localhost 
 
-Lint the Solidity code:
+### Publish a new post via the PublishPost task
 
-```sh
-yarn lint:sol
-```
-
-### Lint TypeScript
-
-Lint the TypeScript code:
-
-```sh
-yarn lint:ts
-```
-
-### Test
-
-Run the Mocha tests:
-
-```sh
-yarn test
-```
-
-### Coverage
-
-Generate the code coverage report:
-
-```sh
-yarn coverage
-```
-
-### Clean
-
-Delete the smart contract artifacts, the coverage reports and the Hardhat cache:
-
-```sh
-yarn clean
-```
+yarn hardhat PublishPost --network localhost
