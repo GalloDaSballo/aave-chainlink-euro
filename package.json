@@ -7,7 +7,9 @@
     "localnode": "yarn workspace @pandoracms/hardhat hardhat node",
     "hardhat": "yarn workspace @pandoracms/hardhat hardhat",
     "deploy": "yarn workspace @pandoracms/hardhat hardhat deploy",
-    "dev": "yarn workspace @pandoracms/next dev",
-    "lint": "yarn workspace @pandoracms/next lint"
+    "subgraph": "yarn workspace @pandoracms/subgraph",
+    "next": "yarn workspace @pandoracms/next",
+    "dev": "yarn next dev",
+    "lint": "yarn next lint"
   }
 }
