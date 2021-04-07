@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, MouseEventHandler, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import publishNewPost from "../../utils/publishNewPost";
 import fromTxToExplorerUrl from "../../utils/fromTxToExplorerUrl";
@@ -8,9 +8,38 @@ const Publish: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const uploadFile = async (e: any) => {
+    e.stopPropagation();
+
+    if (!imageFile) {
+      console.log("No file");
+      return;
+    }
+
+    const data = new FormData();
+    data.append("file", imageFile);
+    const metadata = JSON.stringify({
+      name: imageFile.name,
+    });
+    data.append("pinataMetadata", metadata);
+    const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        pinata_api_key: process.env.NEXT_PUBLIC_PINATA_KEY,
+        pinata_secret_api_key: process.env.NEXT_PUBLIC_PINATA_SECRET,
+      },
+      body: data,
+    });
+    console.log("res", res);
+    const response = await res.json();
+    setImage(response.IpfsHash);
+  };
 
   /**
    * Create new entry, with loading and error handling
@@ -71,6 +100,21 @@ const Publish: React.FC = () => {
           Image (Public or IPFS URI)
           <div>
             <input value={image} onChange={(e) => setImage(e.target.value)} />
+          </div>
+        </label>
+
+        <label htmlFor="ImageFile">
+          Image (Upload){" "}
+          <button type="button" onClick={uploadFile}>
+            Upload Image
+          </button>
+          <div>
+            <input
+              type="file"
+              onChange={(e) =>
+                setImageFile(e.target.files && e.target.files[0])
+              }
+            />
           </div>
         </label>
 
