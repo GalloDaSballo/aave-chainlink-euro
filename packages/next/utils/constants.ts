@@ -10,4 +10,5 @@ export const CONTRACT_ADDRESS = mumbaiDeployment.address;
 
 export const CONTRACT_ABI = mumbaiDeployment.abi;
 
-export const SUBGRAPH_URL = "https://thegraph.com/explorer/subgraph/gallodasballo/opensky"
+export const SUBGRAPH_URL =
+  "https://api.thegraph.com/subgraphs/name/gallodasballo/opensky";

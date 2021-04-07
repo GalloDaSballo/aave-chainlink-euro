@@ -1,7 +1,9 @@
 import type { AppProps } from "next/app";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Provider, Web3Provider } from "@ethersproject/providers";
+import { ApolloProvider } from "@apollo/client";
 import { UserContextProvider } from "../context/UserContext";
+import { client } from "../utils/graphql";
 import "../styles/globals.scss";
 import Header from "../components/Header";
 
@@ -13,8 +15,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <UserContextProvider>
-        <Header />
-        <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <Header />
+          <Component {...pageProps} />
+        </ApolloProvider>
       </UserContextProvider>
     </Web3ReactProvider>
   );
