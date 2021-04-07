@@ -26,6 +26,10 @@ const HomePage: React.FC = () => {
           <Link href="/app/deploy">
             <a>Deploy your blog</a>
           </Link>
+          <p>Publish a new Post</p>
+          <Link href="/app/deploy">
+            <a>Deploy your blog</a>
+          </Link>
         </div>
       )}
     </div>

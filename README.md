@@ -1,6 +1,6 @@
 # OpenSky, decentralized, uncensorable CMS for your blog
 
-This is a monorepo for the PandoraCMS website, containing:
+This is a monorepo for the OpenSky CMS website, containing:
 
 ## hardhat
 The contracts, with tests and tasks to publish new content, using Solidity Template
@@ -36,3 +36,17 @@ yarn deploy --network localhost
 ### Publish a new post via the PublishPost task
 
 yarn hardhat PublishPost --network localhost
+
+
+
+## Addresses
+
+### Mumbai subgraph
+```
+https://api.thegraph.com/subgraphs/name/gallodasballo/opensky
+```
+
+### Mumbai Poster Contract
+```
+0x955EA02B83aE47260666672DFE88549C31f5662B
+```

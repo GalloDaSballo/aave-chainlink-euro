@@ -30,6 +30,11 @@ const Header: React.FC = () => {
             <a>TODO: If deployed, show publish button</a>
           </Link>
         </div>
+        <div>
+          <Link href="/app/preview">
+            <a>TODO: Preview Page</a>
+          </Link>
+        </div>
       </header>
     );
   }

@@ -1,6 +1,6 @@
 {
-  "name": "@pandoracms/hardhat",
-  "description": "Hardhat setup for PandoraCMS, forked from Soldity Template",
+  "name": "@opensky/hardhat",
+  "description": "Hardhat setup for OpenSky CMS, forked from Soldity Template",
   "version": "1.0.0",
   "contributors": [
     {

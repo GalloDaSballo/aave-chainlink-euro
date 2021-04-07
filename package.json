@@ -1,16 +1,16 @@
 
 {
   "private": true,
-  "name": "pandoracms",
+  "name": "opensky",
   "workspaces": ["packages/*"],
   "scripts": {
-    "hardhat": "yarn workspace @pandoracms/hardhat hardhat",
+    "hardhat": "yarn workspace @opensky/hardhat hardhat",
     "localnode": "yarn hardhat node",
     "deploy": "yarn hardhat deploy",
 
-    "subgraph": "yarn workspace @pandoracms/subgraph",
+    "subgraph": "yarn workspace @opensky/subgraph",
     
-    "next": "yarn workspace @pandoracms/next",
+    "next": "yarn workspace @opensky/next",
     "dev": "yarn next dev",
     "lint": "yarn next lint"
   }
