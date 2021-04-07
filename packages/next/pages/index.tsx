@@ -15,11 +15,15 @@ const HomePage: React.FC = () => {
       </Head>
       <h1>Start your decentralized blog</h1>
       <Features />
-      <Login />
+      {!user && (
+        <Link href="/login">
+          <a>Login with Metamask</a>
+        </Link>
+      )}
       {user && (
         <div>
           <p>TODO: Check if user has already deployed</p>
-          <Link href="/deploy">
+          <Link href="/app/deploy">
             <a>Deploy your blog</a>
           </Link>
         </div>

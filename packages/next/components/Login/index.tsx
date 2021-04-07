@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useWeb3React } from "@web3-react/core";
 import { useLogin, useUser } from "../../context/UserContext";
 import handleConnetionError from "../../utils/handleConnectionError";
@@ -15,6 +16,9 @@ const Login: React.FC = () => {
     return (
       <div className={styles.login}>
         Connected as: {user.address} - Network: {chainId}
+        <Link href="/">
+          <a>Go Home</a>
+        </Link>
       </div>
     );
   }

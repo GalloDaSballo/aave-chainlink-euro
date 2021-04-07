@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useCallback, useState } from "react";
 import axios from "axios";
-import { useUser } from "../context/UserContext";
-import styles from "../styles/Home.module.scss";
-import { DEPLOY_BLOG_URL } from "../utils/constants";
+import { useUser } from "../../context/UserContext";
+import styles from "../../styles/Home.module.scss";
+import { DEPLOY_BLOG_URL } from "../../utils/constants";
 
 const HomePage: React.FC = () => {
   const user = useUser();
