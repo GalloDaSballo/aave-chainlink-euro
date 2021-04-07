@@ -1,4 +1,4 @@
-# PandoraCMS, decentralized, uncensorable CMS for your blog
+# OpenSky, decentralized, uncensorable CMS for your blog
 
 This is a monorepo for the PandoraCMS website, containing:
 
