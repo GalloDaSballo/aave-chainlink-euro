@@ -6,7 +6,7 @@ const Features: React.FC = () => (
       <h2>Login with Metamask</h2>
     </div>
     <div>
-      <h2>One click Deploy your own blog to IPFS, with one click</h2>
+      <h2>Deploy your own blog to IPFS, with one click</h2>
     </div>
     <div>
       <h2>Write your content on Matic</h2>
