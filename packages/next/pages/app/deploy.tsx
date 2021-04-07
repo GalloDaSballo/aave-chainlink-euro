@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
           address: user.address,
         },
       });
-      setMessage(`Deployed to IPFS: ${res.data}`);
+      setMessage(`Deployed to IPFS: ${res.data?.hash?.[0]}`);
     } catch (err) {
       setMessage(`Somethign went wrong, ${err.message ? err.message : err}`);
     }
