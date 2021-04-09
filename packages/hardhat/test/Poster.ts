@@ -14,7 +14,7 @@ const setup = deployments.createFixture(async () => {
 });
 
 describe("Unit tests", function () {
-    describe("MicroBlog", function () {
+    describe("Poster", function () {
         let poster: Poster;
 
         beforeEach(async function () {
