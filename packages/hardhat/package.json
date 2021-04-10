@@ -81,6 +81,7 @@
     "typechain": "hardhat typechain"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.1.7",
     "@openzeppelin/contracts": "^3.4.0"
   }
 }

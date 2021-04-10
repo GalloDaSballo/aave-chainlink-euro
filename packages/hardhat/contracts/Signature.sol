@@ -7,7 +7,7 @@ pragma solidity 0.6.12;
 
 import "@openzeppelin/contracts/cryptography/ECDSA.sol";
 
-contract Signature {
+library Signature {
     using ECDSA for bytes32;
 
     /**

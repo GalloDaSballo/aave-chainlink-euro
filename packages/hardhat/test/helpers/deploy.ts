@@ -3,7 +3,7 @@ import { deployments, ethers } from "hardhat";
 
 export async function deploy(
     deploymentName: string,
-    { from, args, connect }: { from?: string; args: Array<unknown>; connect?: Signer },
+    { from, args, connect, libraries }: { from?: string; args: Array<unknown>; connect?: Signer, libraries?: any },
     contractName: string = deploymentName,
 ): Promise<Contract> {
     // Unless overridden, deploy from named address "deployer"
@@ -18,6 +18,7 @@ export async function deploy(
         contract: contractName,
         args,
         log: true,
+        libraries
     });
 
     const instance = await ethers.getContractAt(deploymentName, deployment.address);
