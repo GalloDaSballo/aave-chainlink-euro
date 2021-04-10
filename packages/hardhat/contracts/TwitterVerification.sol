@@ -13,7 +13,7 @@ contract TwitterVerification is ChainlinkClient {
 
     // Store signatures to verify them
     mapping(address => bytes) public userToSignature;
-    
+
     // Store mapping between request and address to ensure address is the only one that can be verified by requestX
     mapping(bytes32 => address) public requestIdToAddress;
 
@@ -28,14 +28,15 @@ contract TwitterVerification is ChainlinkClient {
     
     /**
      * Network: Mumbai
-     * Oracle: 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e
-     * Job ID: 29fa9aa13bf1468788b7cc4a500a45b8
+     * Link: 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
+     * Oracle: 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238
+     * Job ID: 51d20fd94fde46f98495d63313bbe51f
      * Fee: 0.1 LINK
      */
     constructor() public {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB); // Mumbai Link
-        oracle = 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238; // TODO FIX
-        jobId = "29fa9aa13bf1468788b7cc4a500a45b8"; // TODO FIX
+        oracle = 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238; // Mumbai Oracle
+        jobId = "51d20fd94fde46f98495d63313bbe51f";
         fee = 0.1 * 10 ** 18; // 0.1 LINK 
     }
 
