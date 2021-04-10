@@ -1,10 +1,20 @@
 .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 755px;
+  padding: 27px 18px;
+  margin: auto;
+}
+.homeContainer {
+  padding: 27px 18px;
+  margin: auto;
+  max-width: 1167px;
+  text-align: center;
+}
+.deployButton {
+  padding: 17px 38px;
+  background: #222222;
+  color: #fff;
+  width: 100%;
+  text-align: center;
 }
 
 .main {

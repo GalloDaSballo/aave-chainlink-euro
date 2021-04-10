@@ -1,8 +1,27 @@
-.container {
+.features {
   display: flex;
+  text-align: left;
 
   > div {
     flex: 1;
     text-align: center;
+    background: #dddddd;
+    padding: 10px 17px;
+    white-space: nowrap;
+
+    h2 {
+      font-size: 16px;
+      margin: 0;
+    }
   }
+
+  .separator {
+    margin: 0 7px;
+    max-width: 38px;
+    padding: 0;
+    max-height: 8px;
+    background: none;
+    align-self: center;
+  }
+
 }

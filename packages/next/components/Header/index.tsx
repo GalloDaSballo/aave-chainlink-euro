@@ -8,37 +8,40 @@ const Header: React.FC = () => {
   const user = useUser();
   const { chainId, error } = useWeb3React();
 
-  if (error) {
-    return (
-      <header className={styles.header}>{handleConnetionError(error)}</header>
-    );
-  }
-  if (user) {
-    return (
-      <header className={styles.header}>
-        <Link href="/">
-          <a>HOME</a>
+  return (
+    <header className={styles.header}>
+      <Link href="/">
+        <a>
+          <img src="/images/logo.svg" alt="OpenSky Logo" />
+        </a>
+      </Link>
+      {error && <>{handleConnetionError(error)}</>}
+      {user && (
+        <>
+          Connected as: {user?.address} - Network: {chainId}
+          <div>
+            <Link href="/app/deploy">
+              <a>TODO: If not deployed, show deploy button</a>
+            </Link>
+          </div>
+          <div>
+            <Link href="/app/publish">
+              <a className={styles.button}>Add a new Article</a>
+            </Link>
+          </div>
+          <div>
+            <Link href="/app/preview">
+              <a>Preview a Blog</a>
+            </Link>
+          </div>
+        </>
+      )}
+      {!user && (
+        <Link href="/login">
+          <a className={styles.button}>Login with Metamask</a>
         </Link>
-        Connected as: {user.address} - Network: {chainId}
-        <div>
-          <Link href="/app/deploy">
-            <a>TODO: If not deployed, show deploy button</a>
-          </Link>
-        </div>
-        <div>
-          <Link href="/app/publish">
-            <a>TODO: If deployed, show publish button</a>
-          </Link>
-        </div>
-        <div>
-          <Link href="/app/preview">
-            <a>TODO: Preview Page</a>
-          </Link>
-        </div>
-      </header>
-    );
-  }
-
-  return <header className={styles.header} />;
+      )}
+    </header>
+  );
 };
 export default Header;

@@ -1,0 +1,42 @@
+.benefits {
+  margin: 45px;
+  text-align: left;
+  display: flex;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+
+    > div {
+      margin-bottom: 22px;
+    }
+  }
+
+  > div {
+    position: relative;
+    flex: 1;
+    margin-right: 29px;
+    border: 1px solid #222222;
+    padding: 16px 26px;
+
+
+    h3 {
+      max-width: 133px;
+      position: relative;
+      left: 19px;
+      top: -10px;
+    }
+
+    p {
+      margin-top: 11px;
+    }
+
+    .square {
+      position: absolute;
+      width: 67px;
+      height: 67px;
+      top: 16px;
+      left: 26px;
+      background: #faa441;
+      z-index: -1;
+    }
+  }
+}

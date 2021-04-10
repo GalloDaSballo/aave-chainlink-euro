@@ -54,20 +54,14 @@ const HomePage: React.FC = () => {
         </p>
       )} */}
 
-      <h3>
-        Step 1: Get some Matic
-        <a
-          rel="nofollow noreferrer"
-          target="_blank"
-          href="https://faucet.matic.network/"
-        >
-          Get some matic
-        </a>
-      </h3>
-
       <h3>Step 2: Deploy your blog to IPFS</h3>
       {message && <p>{message}</p>}
-      <button type="button" disabled={loading} onClick={handleBlogDeploy}>
+      <button
+        className={styles.deployButton}
+        type="button"
+        disabled={loading}
+        onClick={handleBlogDeploy}
+      >
         {loading ? "Deploying to IPFS!" : "Deploy your blog"}
       </button>
     </div>

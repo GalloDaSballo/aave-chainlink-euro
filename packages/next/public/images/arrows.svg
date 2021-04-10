@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="8" viewBox="0 0 38 8">
+    <defs>
+        <style>
+            .cls-1{fill:#ddd}
+        </style>
+    </defs>
+    <g id="arrows" transform="translate(-639 -317)">
+        <circle id="Ellipse_1" cx="4" cy="4" r="4" class="cls-1" transform="translate(639 317)"/>
+        <circle id="Ellipse_2" cx="4" cy="4" r="4" class="cls-1" transform="translate(655 317)"/>
+        <path id="Polygon_1" d="M4 0l4 7H0z" class="cls-1" transform="rotate(90 180 497)"/>
+    </g>
+</svg>

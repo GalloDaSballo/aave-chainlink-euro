@@ -1,7 +1,8 @@
-import { FormEvent, MouseEventHandler, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import publishNewPost from "../../utils/publishNewPost";
 import fromTxToExplorerUrl from "../../utils/fromTxToExplorerUrl";
+import styles from "../../styles/Publish.module.scss";
 
 const Publish: React.FC = () => {
   const user = useUser();
@@ -9,6 +10,7 @@ const Publish: React.FC = () => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [loadingImage, setLoadingImage] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -20,6 +22,7 @@ const Publish: React.FC = () => {
       console.log("No file");
       return;
     }
+    setLoadingImage(true);
 
     const data = new FormData();
     data.append("file", imageFile);
@@ -39,6 +42,7 @@ const Publish: React.FC = () => {
     console.log("res", res);
     const response = await res.json();
     setImage(response.IpfsHash);
+    setLoadingImage(false);
   };
 
   /**
@@ -62,7 +66,7 @@ const Publish: React.FC = () => {
     setLoading(false);
   };
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Publish a new Entry</h2>
       {loading && <p>Loading!</p>}
       {error && <p>Error: {error}</p>}
@@ -104,10 +108,12 @@ const Publish: React.FC = () => {
         </label>
 
         <label htmlFor="ImageFile">
-          Image (Upload){" "}
-          <button type="button" onClick={uploadFile}>
-            Upload Image
-          </button>
+          Or Upload an Image{" "}
+          {imageFile && (
+            <button type="button" onClick={uploadFile}>
+              {loadingImage ? "Uploading" : "Upload Image"}
+            </button>
+          )}
           <div>
             <input
               type="file"

@@ -1,0 +1,25 @@
+.container {
+  max-width: 755px;
+  padding: 27px 18px;
+  margin: auto;
+
+  h2 {
+    text-align: center;
+  }
+  input, textarea {
+    width: 100%;
+    border: 1px solid #707070;
+    padding: 17px 19px;
+    margin-bottom: 34px;
+  }
+
+  textarea {
+    min-height: 208px;
+  }
+
+  button {
+    padding: 17px 38px;
+    background: #222222;
+    color: #fff;
+  }
+}
