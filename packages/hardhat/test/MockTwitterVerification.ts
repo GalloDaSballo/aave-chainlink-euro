@@ -4,7 +4,7 @@ import { deployments, ethers } from "hardhat";
 import { MockTwitterVerification, Signature } from "../typechain";
 import { deploy } from "./helpers";
 
-const TWITTER_HANDLE = "gallodasballo"
+const TWITTER_HANDLE = "handle"
 const REQ_HASH = "0x0000000000000000000000000000000000000000000000000000000000000000"; // Bytes32(0)
 
 const setup = deployments.createFixture(async () => {
@@ -39,7 +39,16 @@ describe("Unit tests", function () {
             console.log("witterVerification.DEMOrequestTwitterVerification tx", tx)
             const checkRequestIdToUserAddress = await twitterVerification.requestIdToAddress(REQ_HASH)
             expect(checkRequestIdToUserAddress).to.equal(admin.address);
+
+            console.log("witterVerification.DEMOrequestTwitterVerification tx", tx)
+            const checkSignatureIsStored = await twitterVerification["userToSignature(address)"](admin.address)
+            console.log("checkSignatureIsStored", checkSignatureIsStored)
+            expect(checkSignatureIsStored).to.equal(signedMessage);
         });
+
+        it("Ensures Chainlink and Ethers Bytes32 is the same a Twitter handle", async function () {
+            expect( ethers.utils.formatBytes32String(TWITTER_HANDLE)).to.equal("0x68616e646c650000000000000000000000000000000000000000000000000000")
+        })
 
         it("Verify a Twitter handle", async function () {
             /** Setup request */
@@ -48,7 +57,7 @@ describe("Unit tests", function () {
             const signedMessage = await admin.signMessage(ethers.utils.arrayify(hashToSign))
             console.log("signedMessage", signedMessage)
             const tx = await (await twitterVerification.DEMOrequestTwitterVerification(signedMessage, "123")).wait();
-
+            
             /** Fulfill request */
             const recover = await (await twitterVerification.DEMOfulfillTwitterVerification(REQ_HASH, ethers.utils.formatBytes32String(TWITTER_HANDLE))).wait();
 

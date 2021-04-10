@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity 0.6.12;
 
 import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
@@ -25,6 +26,8 @@ contract TwitterVerification is ChainlinkClient {
     address private oracle;
     bytes32 private jobId;
     uint256 private fee;
+
+    bytes32 public lastHandle; // For testing
     
     /**
      * Network: Mumbai
@@ -36,7 +39,7 @@ contract TwitterVerification is ChainlinkClient {
     constructor() public {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB); // Mumbai Link
         oracle = 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238; // Mumbai Oracle
-        jobId = "51d20fd94fde46f98495d63313bbe51f";
+        jobId = "3f1d7d6a80dd4d7ca007439db83e0b48";
         fee = 0.1 * 10 ** 18; // 0.1 LINK 
     }
 
@@ -44,9 +47,8 @@ contract TwitterVerification is ChainlinkClient {
     function requestTwitterVerification(bytes memory signature, string memory tweetId) public returns (bytes32 requestId) 
     {
         userToSignature[msg.sender] = signature;
-        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfillTwitterVerification.selector);
+        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
 
-        request.add("signature", string(signature)); // Strings
         request.add("tweetId", tweetId);
 
         bytes32 requestId = sendChainlinkRequestTo(oracle, request, fee);
@@ -58,24 +60,24 @@ contract TwitterVerification is ChainlinkClient {
     /**
      * Receive the response in the form of uint256
      */ 
-    function fulfillTwitterVerification(bytes32 _requestId, bytes32 _handle) public recordChainlinkFulfillment(_requestId)
+    function fulfill(bytes32 _requestId, bytes32 _handle) public recordChainlinkFulfillment(_requestId)
     {   
-        // Parse Handle
+        // // Parse Handle
         string memory parsedhandle = bytes32ToString(_handle);
 
-        // Given request get UserAddress and Signature
+        // // Given request get UserAddress and Signature
         address userAddress = requestIdToAddress[_requestId];
         bytes memory signature = userToSignature[userAddress]; 
 
-        // Verify who could sign such a message
+        // // Verify who could sign such a message
         address verifiedAddress = Signature.getAddress(parsedhandle, signature);
 
-        // Require that it was signed by the originator of the verification request
+
         require(verifiedAddress == userAddress, "Address Doesn't Match");
 
         verifiedHandle[verifiedAddress] = _handle;
 
-        emit ConfirmVerification(verifiedAddress, _handle, _requestId);
+        emit ConfirmVerification(userAddress, _handle, _requestId);
     }
 
     // Convert Bytes to String, see https://ethereum.stackexchange.com/questions/2519/how-to-convert-a-bytes32-to-string

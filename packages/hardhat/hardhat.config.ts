@@ -1,12 +1,20 @@
 import { HardhatUserConfig } from "hardhat/config";
 import { NetworkUserConfig, HardhatNetworkAccountsUserConfig } from "hardhat/types";
 import { ChainId, infuraApiKey, mnemonic } from "./config";
+
+// Import tasks here
 import "./tasks/PublishPost.ts";
+import "./tasks/RequestVerification";
+import "./tasks/ProofVerification";
+import "./tasks/CheckSignature";
+import "./tasks/RequestIdToAddress";
+import "./tasks/CheckLastHandle";
 
 import "hardhat-deploy";
 // To make hardhat-waffle compatible with hardhat-deploy
 // we have aliased hardhat-ethers to hardhat-ethers-deploy in package.json
 import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
 import "hardhat-gas-reporter";
 import "hardhat-typechain";
 import "solidity-coverage";
@@ -98,6 +106,9 @@ const config: HardhatUserConfig = {
         gasPrice: 100,
         excludeContracts: ["Mock", "ERC20"],
     },
+    etherscan: {
+        apiKey: process.env.ETHERSCAN_API_KEY
+    }
 };
 
 export default config;
