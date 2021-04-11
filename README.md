@@ -133,7 +133,7 @@ Install the external adapter (or deploy it)
 
 Set up a bridge that connects to the external adapter
 
-```json
+```
 {
   "name": "twitter",
   "initiators": [
