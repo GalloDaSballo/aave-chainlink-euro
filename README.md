@@ -2,7 +2,11 @@
 
 Write your content on Matic, 
 Deploy it to IPFS, 
-Verify your Credentials with Chainlink
+Pair your Address and Twitter Account with Chainlink
+
+Using TheGraph for the best UX
+
+Built for the Chainlink  Hackathon Mar / Apr 2021
 
 ## Technologies
 - Docker (image to build your blog and deploy it to IPFS)
