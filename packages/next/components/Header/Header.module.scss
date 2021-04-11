@@ -3,6 +3,10 @@
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
+
+  span a {
+    text-decoration: underline;
+  }
 }
 .button, .actionButton {
   padding: 17px 38px;

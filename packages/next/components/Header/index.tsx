@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useWeb3React } from "@web3-react/core";
-import { useUser } from "../../context/UserContext";
+import { useLogin, useUser } from "../../context/UserContext";
 import handleConnetionError from "../../utils/handleConnectionError";
 import styles from "./Header.module.scss";
 import { usePublishedAddress } from "../../context/IPFSContext";
@@ -9,6 +9,8 @@ const Header: React.FC = () => {
   const user = useUser();
   const { error } = useWeb3React();
   const IPFSAddress = usePublishedAddress();
+
+  const login = useLogin();
   return (
     <header className={styles.header}>
       <Link href="/">
@@ -16,7 +18,7 @@ const Header: React.FC = () => {
           <img src="/images/logo.svg" alt="OpenSky Logo" />
         </a>
       </Link>
-      {error && <>{handleConnetionError(error)}</>}
+      {error && <span>{handleConnetionError(error)}</span>}
       {user && (
         <>
           Connected as: {String(user?.address).substring(0, 6)}...
@@ -47,9 +49,9 @@ const Header: React.FC = () => {
         </>
       )}
       {!user && (
-        <Link href="/login">
-          <a className={styles.button}>Login with Metamask</a>
-        </Link>
+        <button type="button" onClick={() => login()} className={styles.button}>
+          Login with Metamask
+        </button>
       )}
     </header>
   );

@@ -2,7 +2,7 @@ import mumbaiDeployment from "@opensky/hardhat/deployments/mumbai/Poster.json";
 
 // TODO MAKE THIS WORK FOR ALL ENVIRONMENTS (or quit and just go with mumbai for hackathon)
 
-export const DEPLOY_BLOG_URL = "http://3.94.22.221:3000";
+export const DEPLOY_BLOG_URL = "https://deploy-ipfs.herokuapp.com";
 
 export const EXPLORER_URL = "https://explorer-mumbai.maticvigil.com";
 
