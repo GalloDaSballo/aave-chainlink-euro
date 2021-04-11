@@ -7,6 +7,34 @@
   span a {
     text-decoration: underline;
   }
+
+  .commands {
+    display: flex;
+    a {
+      display: inline-block;
+    }
+    flex: 1;
+    justify-content: flex-end;
+    flex-direction: row;
+    div {
+      margin-left: 24px;
+      flex: 1;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 12px 15px;
+
+    .commands {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      flex-direction: column;
+      div {
+        margin-bottom: 12px;
+        align-self: flex-end;
+      }
+    }
+  }
 }
 .button, .actionButton {
   padding: 17px 38px;

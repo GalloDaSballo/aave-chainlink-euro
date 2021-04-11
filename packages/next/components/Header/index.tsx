@@ -21,30 +21,33 @@ const Header: React.FC = () => {
       {error && <span>{handleConnetionError(error)}</span>}
       {user && (
         <>
-          Connected as: {String(user?.address).substring(0, 6)}...
-          <div>
-            {!IPFSAddress && (
-              <Link href="/app/deploy">
-                <a className={styles.actionButton}>
-                  <img src="/images/upload.svg" alt="publish" /> Publish to IPFS
+          <div className={styles.commands}>
+            Connected as: {String(user?.address).substring(0, 6)}...
+            <div>
+              {!IPFSAddress && (
+                <Link href="/app/deploy">
+                  <a className={styles.actionButton}>
+                    <img src="/images/upload.svg" alt="publish" /> Publish to
+                    IPFS
+                  </a>
+                </Link>
+              )}
+              {IPFSAddress && (
+                <a
+                  className={styles.actionButton}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  href={`https://gateway.pinata.cloud/ipfs/${IPFSAddress}/`}
+                >
+                  <img src="/images/preview.svg" alt="publish" /> View Your Blog
                 </a>
+              )}
+            </div>
+            <div>
+              <Link href="/app/publish">
+                <a className={styles.button}>Add a new Article</a>
               </Link>
-            )}
-            {IPFSAddress && (
-              <a
-                className={styles.actionButton}
-                target="_blank"
-                rel="nofollow noreferrer"
-                href={`https://gateway.pinata.cloud/ipfs/${IPFSAddress}/`}
-              >
-                <img src="/images/preview.svg" alt="publish" /> View Your Blog
-              </a>
-            )}
-          </div>
-          <div>
-            <Link href="/app/publish">
-              <a className={styles.button}>Add a new Article</a>
-            </Link>
+            </div>
           </div>
         </>
       )}
