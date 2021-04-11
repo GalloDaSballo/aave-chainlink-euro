@@ -65,48 +65,58 @@ Tests for the verification are in `hardhat/tests/MockTwitterVerification.sol`
 ## Local Blog Testing
 
 ## Run a hardhat localhost node
+```
 yarn localnode
+```
 
 ## Deploy the contract to localhost
+```
 yarn deploy --network localhost 
+```
 
 ### Publish a new post via the PublishPost task
-
+```
 yarn hardhat PublishPost --network localhost
+```
 
 
 
+## Mumbai Addressess - ChainID 8001
 
-## Addressess 
-Hardhat Deployed
-0x66C2543F4dF830C313a39972A343403127b2A9EB
-
-
-New MUMBAI Deployments
-Poster
+Poster:
+```
 0x345d34E69cC471D87CBaF4c200d2ED1A74071e12
+```
 
 Subgraph:
 https://thegraph.com/explorer/subgraph/gallodasballo/opensky
 
 
 Library Signature
+```
 0x38F4133393B163399D76daAd13cd6fdF666A88fA
+```
 
 Twitter Verification
+```
 0xeEF73Ad5Cbbe958d851cb05B307eE3aaf36309a0
-
+```
 
 LINK:
 Node:
+```
 0xeB8f024BA189B276E6DbBa95CEb05BAc8695281a
+```
 
 Oracle:
+```
 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238
-
+```
 
 Token:
+```
 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
+```
 
 
 
