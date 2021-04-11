@@ -9,3 +9,10 @@
     text-decoration: underline;
   }
 }
+
+.footerLinks {
+  display: flex;
+  > div {
+    flex: 1;
+  }
+}

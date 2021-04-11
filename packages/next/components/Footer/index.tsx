@@ -20,8 +20,13 @@ const Footer: React.FC = () => {
           </p>
         </div>
       )}
+      <div className={styles.footerLinks}>
       <div>
         <Link href="/app/preview">View all articles</Link>
+      </div>
+      <div>
+        <a href="mailto:alex@entreprenerd.xyz" target="_blank" rel="nofollow noreferrer">Investor? Let's talk</a>
+      </div>
       </div>
     </footer>
   );
