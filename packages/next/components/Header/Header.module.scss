@@ -2,9 +2,17 @@
   padding: 67px 120px;
   display: flex;
   justify-content: space-between;
+  white-space: nowrap;
 }
-.button {
+.button, .actionButton {
   padding: 17px 38px;
   background: #222222;
   color: #fff;
+}
+.actionButton{
+  img {
+    vertical-align: middle;
+    margin-right: 11px;
+  }
+  background: #faa441;
 }

@@ -4,13 +4,21 @@ import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import styles from "../../styles/Home.module.scss";
 import { DEPLOY_BLOG_URL } from "../../utils/constants";
+import {
+  usePublishedAddress,
+  useSetPublishedAddress,
+} from "../../context/IPFSContext";
 
-const HomePage: React.FC = () => {
+const DeployPage: React.FC = () => {
   const user = useUser();
   const [loading, setLoading] = useState<boolean>(false);
 
   // const [hasOnboarded, updatedOnboard] = useHasOnboarded(); // Todo, using localStorage and real contract
   const [message, setMessage] = useState<string | null>(null);
+
+  const setPublisedIPFSAddress = useSetPublishedAddress();
+
+  const IPFSAddress = usePublishedAddress();
 
   const handleBlogDeploy = useCallback(async () => {
     try {
@@ -29,11 +37,12 @@ const HomePage: React.FC = () => {
         },
       });
       setMessage(`Deployed to IPFS: ${res.data?.hash?.[0]}`);
+      setPublisedIPFSAddress(res.data?.hash?.[0]);
     } catch (err) {
       setMessage(`Somethign went wrong, ${err.message ? err.message : err}`);
     }
     setLoading(false);
-  }, [user]);
+  }, [user, setPublisedIPFSAddress]);
 
   if (!user) {
     return <div>Please login first</div>;
@@ -53,19 +62,36 @@ const HomePage: React.FC = () => {
           re-deploy?
         </p>
       )} */}
-
-      <h3>Step 2: Deploy your blog to IPFS</h3>
-      {message && <p>{message}</p>}
-      <button
-        className={styles.deployButton}
-        type="button"
-        disabled={loading}
-        onClick={handleBlogDeploy}
-      >
-        {loading ? "Deploying to IPFS!" : "Deploy your blog"}
-      </button>
+      {!IPFSAddress && (
+        <>
+          <h3>Deploy your blog to IPFS</h3>
+          <p>Click this button and wait for the deployment to complete</p>
+          {message && <p>{message}</p>}
+          <button
+            className={styles.deployButton}
+            type="button"
+            disabled={loading}
+            onClick={handleBlogDeploy}
+          >
+            {loading ? "Deploying to IPFS!" : "Deploy your blog"}
+          </button>
+        </>
+      )}
+      {IPFSAddress && (
+        <>
+          <h3>Your Blog is Live!</h3>
+          <a
+            className={styles.actionButtonFull}
+            target="_blank"
+            rel="nofollow noreferrer"
+            href={`https://gateway.pinata.cloud/ipfs/${IPFSAddress}/`}
+          >
+            <img src="/images/preview.svg" alt="publish" /> View Your Blog
+          </a>
+        </>
+      )}
     </div>
   );
 };
 
-export default HomePage;
+export default DeployPage;

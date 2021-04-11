@@ -9,6 +9,25 @@
   max-width: 1167px;
   text-align: center;
 }
+.button, .actionButton, .actionButtonFull {
+  padding: 17px 38px;
+  background: #222222;
+  color: #fff;
+}
+.actionButton, .actionButtonFull{
+  img {
+    vertical-align: middle;
+    margin-right: 11px;
+  }
+  background: #faa441;
+}
+
+.actionButtonFull{
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
 .deployButton {
   padding: 17px 38px;
   background: #222222;

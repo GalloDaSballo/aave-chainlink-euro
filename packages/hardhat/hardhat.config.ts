@@ -9,6 +9,7 @@ import "./tasks/ProofVerification";
 import "./tasks/CheckSignature";
 import "./tasks/RequestIdToAddress";
 import "./tasks/CheckLastHandle";
+import "./tasks/ManualFulfill";
 
 import "hardhat-deploy";
 // To make hardhat-waffle compatible with hardhat-deploy
