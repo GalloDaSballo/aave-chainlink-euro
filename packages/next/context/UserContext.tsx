@@ -59,7 +59,7 @@ export const UserContextProvider: React.FC = ({ children }) => {
    */
   const login = async (): Promise<void> => {
     try {
-        activateMetamask();
+      activateMetamask();
     } catch (err) {
       alert(`Exception in loggign in ${alert}`);
     }
