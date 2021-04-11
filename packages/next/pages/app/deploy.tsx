@@ -50,7 +50,7 @@ const DeployPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Open Sky - Build and Launch your Decentralized Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Deploy your blog</h1>

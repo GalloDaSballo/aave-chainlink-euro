@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
   return (
     <div className={styles.homeContainer}>
       <Head>
-        <title>Create Next App</title>
+        <title>Open Sky - Build and Launch your Decentralized Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Start your decentralized blog</h1>
