@@ -19,7 +19,7 @@ contract TwitterVerification is ChainlinkClient {
     mapping(bytes32 => address) public requestIdToAddress;
 
     // Mapping of user addresses and their verified handle
-    mapping(address => bytes32) public verifiedHandle;
+    mapping(address => string) public verifiedHandle;
 
 
     /** ChainLink  */
@@ -38,8 +38,8 @@ contract TwitterVerification is ChainlinkClient {
      */
     constructor() public {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB); // Mumbai Link
-        oracle = 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238; // Mumbai Oracle
-        jobId = "3f1d7d6a80dd4d7ca007439db83e0b48";
+        oracle = 0x6bF79E7DB8E5dFCE785B607Dd4aDfe83389AE0C8; // Mumbai Oracle
+        jobId = "4de0eea31b9a41c5b960e0e0429d258d";
         fee = 0.1 * 10 ** 18; // 0.1 LINK 
     }
 
@@ -75,7 +75,7 @@ contract TwitterVerification is ChainlinkClient {
 
         require(verifiedAddress == userAddress, "Address Doesn't Match");
 
-        verifiedHandle[verifiedAddress] = _handle;
+        verifiedHandle[verifiedAddress] = bytes32ToString(_handle);
 
         emit ConfirmVerification(userAddress, _handle, _requestId);
     }
