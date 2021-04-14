@@ -32,8 +32,8 @@ contract TwitterVerification is ChainlinkClient {
     /**
      * Network: Mumbai
      * Link: 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
-     * Oracle: 0x373ed9E1De6B01ea2e479E012624Bdd01E6fC238
-     * Job ID: 51d20fd94fde46f98495d63313bbe51f
+     * Oracle: 0x6bF79E7DB8E5dFCE785B607Dd4aDfe83389AE0C8
+     * Job ID: 4de0eea31b9a41c5b960e0e0429d258d
      * Fee: 0.1 LINK
      */
     constructor() public {
