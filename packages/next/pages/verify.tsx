@@ -1,5 +1,6 @@
 import { Contract, Signer, utils } from "ethers";
 import { FormEvent, useEffect, useState } from "react";
+import { useHandle } from "../context/TwitterVerificationContext";
 import { useUser } from "../context/UserContext";
 import styles from "../styles/Publish.module.scss";
 import {
@@ -20,30 +21,7 @@ export const getToken = async (signer: Signer, message: string) => {
   return signature;
 };
 
-const useVerifiedHandle = (signer: Signer): string | null => {
-  const [handle, setHandle] = useState<string|null>(null)
 
-  const fetchHandle = async () => {
-    try {
-      const verificationContract = new Contract(VERIFICATION_ADDRESS, VERIFICATION_ABI, signer)
-      const onChain = await verificationContract.verifiedHandle(await signer.getAddress())
-      if(onChain) {
-        setHandle(onChain)
-      }
-    } catch(err){
-
-    }
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetchHandle();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [fetchHandle]);
-
-  return handle
-}
 
 
 const VerifyAccountPage: React.FC = () => {
@@ -54,7 +32,8 @@ const VerifyAccountPage: React.FC = () => {
   const [result, setResult] = useState<any>(null);
   const user = useUser();
 
-  const onChainHandle = useVerifiedHandle(user?.provider?.getSigner())
+  const onChainHandle = useHandle()
+  console.log("onChainHandle", onChainHandle)
 
   const handleSignature = async (e: FormEvent) => {
     e.preventDefault();
@@ -88,6 +67,14 @@ const VerifyAccountPage: React.FC = () => {
     setResult(res.transactionHash);
     setStep(3);
   };
+
+  if(onChainHandle){
+    return (
+      <div className={styles.container}>
+        <h2>You are verified! {onChainHandle}</h2>
+      </div>
+    )
+  }
   return (
     <div className={styles.container}>
       <h2>Verify your Twitter</h2>
@@ -150,7 +137,7 @@ const VerifyAccountPage: React.FC = () => {
         </>
       )}
 
-      {onChainHandle && <h4>You are verified! {onChainHandle}</h4>}
+      
     </div>
   );
 };

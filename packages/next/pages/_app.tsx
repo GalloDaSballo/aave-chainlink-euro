@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { BalanceContextProvider } from "../context/BalanceContext";
 import { IPFSContextProvider } from "../context/IPFSContext";
+import { TwitterVerificationContextProvider } from "../context/TwitterVerificationContext";
 
 const getLibrary = (provider: Provider): Web3Provider => {
   return new Web3Provider(provider as any); // this will vary according to whether you use e.g. ethers or web3.js
@@ -20,11 +21,13 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <UserContextProvider>
         <BalanceContextProvider>
           <IPFSContextProvider>
-            <ApolloProvider client={client}>
-              <Header />
-              <Component {...pageProps} />
-              <Footer />
-            </ApolloProvider>
+            <TwitterVerificationContextProvider>
+              <ApolloProvider client={client}>
+                <Header />
+                <Component {...pageProps} />
+                <Footer />
+              </ApolloProvider>
+            </TwitterVerificationContextProvider>
           </IPFSContextProvider>
         </BalanceContextProvider>
       </UserContextProvider>
