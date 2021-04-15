@@ -10,6 +10,7 @@ import "./tasks/CheckSignature";
 import "./tasks/RequestIdToAddress";
 import "./tasks/CheckLastHandle";
 import "./tasks/ManualFulfill";
+import "./tasks/AddressToHandle";
 
 import "hardhat-deploy";
 // To make hardhat-waffle compatible with hardhat-deploy
