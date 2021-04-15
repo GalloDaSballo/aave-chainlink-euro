@@ -21,7 +21,7 @@ const Benefits: React.FC = () => {
   return (
     <div className={styles.benefits}>
       {BENEFITS.map((benefit) => (
-        <div>
+        <div key={benefit.title}>
           <div className={styles.square} />
           <h3>{benefit.title}</h3>
           <p>{benefit.content}</p>

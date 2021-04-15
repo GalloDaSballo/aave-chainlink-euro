@@ -1,5 +1,5 @@
 import { Contract, Signer, utils } from "ethers";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import styles from "../styles/Publish.module.scss";
 import {
@@ -20,6 +20,32 @@ export const getToken = async (signer: Signer, message: string) => {
   return signature;
 };
 
+const useVerifiedHandle = (signer: Signer): string | null => {
+  const [handle, setHandle] = useState<string|null>(null)
+
+  const fetchHandle = async () => {
+    try {
+      const verificationContract = new Contract(VERIFICATION_ADDRESS, VERIFICATION_ABI, signer)
+      const onChain = await verificationContract.verifiedHandle(await signer.getAddress())
+      if(onChain) {
+        setHandle(onChain)
+      }
+    } catch(err){
+
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchHandle();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [fetchHandle]);
+
+  return handle
+}
+
+
 const VerifyAccountPage: React.FC = () => {
   const [step, setStep] = useState(1);
   const [handle, setHandle] = useState("");
@@ -27,6 +53,8 @@ const VerifyAccountPage: React.FC = () => {
   const [postId, setPostId] = useState<string>("");
   const [result, setResult] = useState<any>(null);
   const user = useUser();
+
+  const onChainHandle = useVerifiedHandle(user?.provider?.getSigner())
 
   const handleSignature = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,7 +64,7 @@ const VerifyAccountPage: React.FC = () => {
       SIGNATURE_ABI,
       user.provider
     );
-    const hash = await signatureContract.getHash(handle);
+    const hash = await signatureContract.getHash(String(handle).toLowerCase());
     // const fromContract = await // TODO FROM S
     const res = await getToken(user.provider.getSigner(), hash);
     setSignature(res);
@@ -121,6 +149,8 @@ const VerifyAccountPage: React.FC = () => {
           <p>{result}</p>
         </>
       )}
+
+      {onChainHandle && <h4>You are verified! {onChainHandle}</h4>}
     </div>
   );
 };
